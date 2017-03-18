@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>Ex Angular</title>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/index.controller.js"></script>
+        <script type="text/javascript" src="js/index.service.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+    </head>
+    <body ng-controller="IndexController">
+        <div>
+            <div class="formulario">
+                <form name="prodForm" ng-submit="salvar(prod)">
+                    <p><input type="text" name="nome" ng-model="prod.nome" ng-minlength="5" required></p>
+                    <p><input type="number" step="any" name="preco" ng-model="prod.preco" min="0" required></p>
+                    <p><input type="number" name="quantidade" ng-model="prod.quantidade" min="0" required></p>
+                    <p><button type="submit" class="btn btn-success" ng-disabled="prodForm.$invalid">Salvar</button></p>
+                </form>                
+            </div>
+            <div class="tabela">
+                <table class="table-stripped">
+                    <tr>
+                        <th>NOME</th>
+                        <th>PREÇO</th>
+                        <th>QUANTIDADE</th>
+                    </tr>
+                    <tr ng-repeat="x in produtos track by $index">
+                        <td>{{x.nome}}</td>
+                        <td>{{x.preco | currency: 'R$'}}</td>
+                        <td>{{x.quantidade}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
